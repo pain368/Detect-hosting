@@ -4,6 +4,7 @@ from requests import get, post, Request, request
 
 
 def display_array(array: list):
+    """ Display list """
     arr = []
     for i in array:
         arr.append(i)
@@ -11,6 +12,8 @@ def display_array(array: list):
 
 
 def clear_list(array):
+    """ data modeling """
+
     zero_array: list = array.split("\n")
     first_array: list = []
     second_array: list = []
@@ -23,23 +26,28 @@ def clear_list(array):
     for i in range(0, len(second_array)):
         if len(second_array[i]) > 1:
             general_array.append(second_array[i])
+
     return general_array
 
 
 def get_multiple_address(url_from_file: list):
-    """ Odpytaj serwer dns o adresy, zgromadz je i zwroc jako liste adresow IP"""
+    """ """
 
     host_address: list = []
     for i in range(0, len(url_from_file)):
-        url_parse = urlparse(url_from_file[i].strip("\n"))
-        hosting_ip: str = socket.gethostbyname(url_parse.netloc)
-        host_address.append(hosting_ip)
+        try:
+            url_parse = urlparse(url_from_file[i].strip("\n"))
+            hosting_ip: str = socket.gethostbyname(url_parse.netloc)
+            host_address.append(hosting_ip)
+            return host_address
 
-    return host_address
+        except socket.error as err:
+            print(err)
+
 
 
 def get_single_address(url: str):
-    """ Odpytaj serwer dns o adres i zwroc"""
+    """ """
     try:
         url_parse = urlparse(url.strip("\n"))
         hosting_ip: str = socket.gethostbyname(url_parse.netloc)
