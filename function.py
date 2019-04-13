@@ -10,7 +10,7 @@ def display_array(array: list):
         print(i)
 
 
-def clare_array(array):
+def clear_list(array):
     zero_array: list = array.split("\n")
     first_array: list = []
     second_array: list = []
@@ -50,7 +50,7 @@ def get_single_address(url: str):
 
 
 def get_single_response_code(url: str):
-    """ Sprawdza pojedynczy adres i czy dziala, slownik zaiwra url i kod odpoweidzi"""
+    """ Checks whether the web address is working and return the response code"""
 
     data_response_info: dict = {}
     request_result: str = request("GET", url.strip("\n"))
@@ -60,7 +60,7 @@ def get_single_response_code(url: str):
 
 
 def get_multiple_request(url_list: list):
-    """ Sprawdza wiele adres i czy dziala, slownik zaiwra url i kod odpoweidzi"""
+    """ Checks whether www addresses work and return the response code """
 
     data_response_info: dict = {}
 

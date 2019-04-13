@@ -1,15 +1,13 @@
 import sys
-import socket
 import subprocess
-from urllib.parse import urlparse
 from function import *
-
 
 # ------ HELP VARIABLE ------
 
 data_filtr: list = ["inetnum", "netname", "country", "route", "descr"]
 
-# ------ HELP VARIABLE ------
+# ---------------------------
+
 
 # -------- OPEN FILE --------
 
@@ -26,8 +24,7 @@ for i in data_from_file:
 
 data_hostin: bytes = subprocess.check_output(["whois", '80.72.35.35'])
 data_decode: str = data_hostin.decode("utf-8")
-data: list = clare_array(data_decode)
-
+data: list = clear_list(data_decode)
 
 xx: list = []
 
