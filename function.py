@@ -10,7 +10,7 @@ def display_array(array: list):
         print(i)
 
 
-def clare_array(array: list):
+def clare_array(array):
     zero_array: list = array.split("\n")
     first_array: list = []
     second_array: list = []
