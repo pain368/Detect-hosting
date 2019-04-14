@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 import socket
-from requests import get, post, Request, request
+from requests import request
 
 
 def display_array(array: list):
@@ -35,15 +35,12 @@ def get_multiple_address(url_from_file: list):
 
     host_address: list = []
     for i in range(0, len(url_from_file)):
-        try:
-            url_parse = urlparse(url_from_file[i].strip("\n"))
-            hosting_ip: str = socket.gethostbyname(url_parse.netloc)
-            host_address.append(hosting_ip)
-            return host_address
 
-        except socket.error as err:
-            print(err)
+        url_parse = urlparse(url_from_file[i].strip("\n"))
+        hosting_ip: str = socket.gethostbyname(url_parse.netloc)
+        host_address.append(hosting_ip)
 
+    return host_address
 
 
 def get_single_address(url: str):
@@ -77,3 +74,4 @@ def get_multiple_request(url_list: list):
         data_response_info[url_list[i]] = request_result
 
     return data_response_info
+

@@ -4,7 +4,7 @@ from function import *
 
 # ------ HELP VARIABLE ------
 
-data_filtr: list = ["inetnum", "netname", "country", "route", "descr"]
+data_filter: list = ["inetnum", "netname", "country", "route", "descr"]
 
 # ---------------------------
 
@@ -18,18 +18,16 @@ file_read_mode.close()
 # ----- END OPEN FILE -------
 
 
-for i in data_from_file:
-    res = get_single_address(i.strip("\n"))
-    print(res)
+data_to_display = get_multiple_address(data_from_file)
 
-data_hostin: bytes = subprocess.check_output(["whois", '80.72.35.35'])
-data_decode: str = data_hostin.decode("utf-8")
-data: list = clear_list(data_decode)
+for ip in data_to_display:
 
-xx: list = []
+    data_hosting: bytes = subprocess.check_output(["whois", '{}'.format(ip)])
+    data_decode: str = data_hosting.decode("utf-8")
+    data: list = clear_list(data_decode)
 
-for i in range(0, len(data)):
-    for j in range(0, len(data_filtr)):
-        if data_filtr[j] in data[i]:
-            print(" : ".join(data[i]))
-print("------------------------")
+    for i in range(0, len(data)):
+        for j in range(0, len(data_filter)):
+            if data_filter[j] in data[i]:
+                print(" : ".join(data[i]))
+    print("------------------------")
